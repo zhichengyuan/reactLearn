@@ -11,7 +11,7 @@ let index = 0;//显示的图片索引
 const container = document.getElementById('photo');
 let timer;
 
-// 根据index的值，显示某张图片
+// 根据index的值，
 
 function render(){
     ReactDOM.render( <img src={srcs[index]} alt=""/> , container);
