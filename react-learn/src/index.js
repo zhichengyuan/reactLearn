@@ -7,4 +7,4 @@ import BallList from "./components/BallList"
 // // var appkey = 'yuanzhicheng_1563606632795';
 // var baseurl = 'http://open.duyiedu.com';
 
-ReactDOM.render( <BallList /> , document.getElementById('root'));
+// ReactDOM.render( <BallList /> , document.getElementById('root'));
