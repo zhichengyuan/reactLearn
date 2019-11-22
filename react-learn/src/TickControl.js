@@ -19,7 +19,7 @@ export default class TickControl extends Component {
     }
 
     render() {
-        let status = '正在倒计时';
+        let status = '正计时';
         if(this.state.isOver) {
             status = '倒计时完成'
         }
