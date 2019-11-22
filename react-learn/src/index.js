@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tick from './Tick'
+import TickControl from './TickControl'
 
+const tc = new TickControl();
+console.log(tc);
 
-ReactDOM.render( <Tick number={10}/>, document.getElementById('root'));
+ReactDOM.render( <TickControl />, document.getElementById('root'));

@@ -7,6 +7,7 @@ export default class Tick extends Component {
         this.state = {
             number:props.number
         }
+        console.log(props);
 
         const timer = setInterval(() => {
             this.setState({
@@ -14,13 +15,15 @@ export default class Tick extends Component {
             })
             if(this.state.number === 0) {
                 clearInterval(timer);
+                //倒计时完成
+                this.props.onOver && this.props.onOver();
             }
         },1000)
     }
 
     render() {
         return (
-            <h1>
+            <h1 onClick={this.props.onClick}>
                 倒计时：{this.state.number}
             </h1>
         )
