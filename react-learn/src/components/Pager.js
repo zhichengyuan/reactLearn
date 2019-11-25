@@ -13,11 +13,15 @@ import './Pager.css'
 
 export default function Pager(props) {
     const pageNumber = getPageNumber(props);
+    if(pageNumber == '0') {
+        return null;
+    }
+    console.log(props);
     const min = getMinNumber(props);//获取最小数字
     const max = getMaxNumber(min,pageNumber,props);//最大数字
     const number = [];
-    for (var i = min; i<= max; i++) {
-        number.push(<span key={i} className="item" onClick={() => {toPage(i,props)}}>{i}</span>)
+    for (let i = min; i<= max; i++) {
+        number.push(<span key={i} className="item" onClick={() => {toPage(i,props)}} className={i===props.current ? "item active" : "item"}>{i}</span>)
     }
     return (
         <>
@@ -30,8 +34,12 @@ export default function Pager(props) {
                 className={props.current === 1 ? "item disabled" : 'item'}>上一页</span>
             {/* 数字页码 */}
             {number}
-            <span className={props.current === pageNumber ? "item disabled" : 'item'}>下一页</span>
-            <span className={props.current === pageNumber ? "item disabled" : 'item'}>尾页</span>
+            <span
+                onClick={() => {toPage(props.current + 1 > pageNumber ? pageNumber : props.current + 1,props)}}
+                 className={props.current === pageNumber ? "item disabled" : 'item'}>下一页</span>
+            <span
+                onClick={() => {toPage(pageNumber,props)}} 
+                className={props.current === pageNumber ? "item disabled" : 'item'}>尾页</span>
             <span className="current">{props.current}</span>/
             <span>{pageNumber}</span>
         </>
@@ -69,7 +77,6 @@ function getMaxNumber(min,pageNumber,props){
  */
 
 function toPage(target,props){
-    console.log(target,props);
     if(props.current === target) {
         return; //目标和当前页面相同
     }

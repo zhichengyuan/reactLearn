@@ -14,3 +14,9 @@
 .current{
     margin-left: 10px;
 }
+
+.active{
+    border: none;
+    color:#f40;
+    cursor: auto;
+}
