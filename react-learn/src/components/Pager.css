@@ -11,3 +11,6 @@
     color: #ccc;
     cursor: not-allowed;
 }
+.current{
+    margin-left: 10px;
+}

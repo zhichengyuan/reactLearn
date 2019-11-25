@@ -4,7 +4,7 @@ import Pager from './components/Pager'
 
 
 ReactDOM.render( <Pager 
-    current={3}
+    current={1}
     total={100}
     limit={9}
     panelNumber={5}
