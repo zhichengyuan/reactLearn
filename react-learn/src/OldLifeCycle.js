@@ -82,6 +82,18 @@ export default class OldLifeCycle extends Component {
                         n:this.state.n + 1
                     })
                 }}>状态n+1</button>
+
+                <h1>新的生命周期 React {'>'} 16.0.0 </h1>
+                <h2>React官方认为，某个数据得来来源必须是单一的</h2>
+                <h2>1.getDerivedStateFromProps</h2>
+                <p>1.通过参数可以获取新的属性和状态</p>
+                <p>2.该函数是静态的</p>
+                <p>3.该函数的返回值会覆盖掉组件状态</p>
+                <p>3.该函数几乎没什么用</p>
+                <h2>2.getSnapshotBeforeUpdate</h2>
+                <p>1.真事的dom构建完成，但还未实际渲染到页面中</p>
+                <p>2.在该函数中，通常用于实现一些附加的dom操作</p>
+                <p>3.该函数的返回值，会作为componentDidUpdate的第三个参数</p>
             </div>
         )
     }

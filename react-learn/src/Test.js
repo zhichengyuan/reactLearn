@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
-import Test from './Test'
 
-export default class App extends Component {
-    state = {
-        number:1,
+export default class Test extends Component {
+    state ={
+        n:this.props.n
     }
+
     render() {
-        
         return (
             <div>
-                <Test n={this.state.number}/>
+                <h1>数字：{this.state.n}</h1>
                 <p>
                     <button onClick={() => {
                         this.setState({
-                            number:this.state.number
+                            n:this.state.n + 1
                         })
-                    }}>父组件按钮+1</button>
+                    }}>n加1</button>
                 </p>
             </div>
         )
