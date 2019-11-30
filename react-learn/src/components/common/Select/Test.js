@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import CheckBoxGroup from './index'
+import Selet from './index'
 import { getAllStudents } from '../../../services/student'
 
 export default class Test extends Component {
     state = {
         datas:[],
-        chooseDatas:[]
+        value:''
     }
 
     async componentDidMount() {
@@ -19,13 +19,13 @@ export default class Test extends Component {
     render() {
         return (
             <div>
-                <CheckBoxGroup
+                <Selet
                 name='loves' 
                 datas={this.state.datas}
-                chooseDates={this.state.chooseDatas}
-                onChange={newArr => {
+                value={this.state.value}
+                onChange={val => {
                     this.setState({
-                        chooseDatas:newArr
+                        value:val
                     })
                 }}
                 />
