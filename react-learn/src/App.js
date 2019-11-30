@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-// import Test from "./components/common/CheckBoxGroup/Test"
-// import Test from "./components/common/RadioBoxGroup/Test"
-import Select from "./components/common/Select/Test"
+// import FunDefault from './FunDefault'
+import ClassDefault from './ClassDefault'
 
 export default class App extends Component {
     
@@ -9,7 +8,8 @@ export default class App extends Component {
        
         return (
             <div>
-                <Select />
+                {/* <FunDefault a={10} b={4} /> */}
+                <ClassDefault a={11} b={4} />
             </div>
         )
     }
