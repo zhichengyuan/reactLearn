@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-// import FunDefault from './FunDefault'
-// import ClassDefault from './ClassDefault'
-import ValidationComp,{ A } from './ValidationComp'
-import Comp from './Comp'
+// import Test from './components/common/CheckBoxGroup/Test'
+// import Test from './components/common/RadioBoxGroup/Test'
+// import Test from './components/common/Select/Test'
+import Test from './components/Test'
+
 
 export default class App extends Component {
     
@@ -10,32 +11,7 @@ export default class App extends Component {
        
         return (
             <div>
-                {/* <FunDefault a={10} b={4} /> */}
-                {/* <ClassDefault a={11} b={4} /> */}
-                <ValidationComp
-                    a={1}
-                    d={<Comp/>}
-                    e={<Comp/>}
-                    F={Comp}
-                    g={new A()}
-                    sex='男'
-                    h={[2,4]}
-                    i={{
-                        a:1
-                    }}
-                    j={{
-                        name:'sdas',
-                        age:2,
-                        a:3,
-                        address:{
-                            province:'dsd',
-                            city:'dsda'
-                        }
-                    }}
-                    k={[{name:'sdsa',age:12}]}
-                    m={'true'}
-                    score={100}
-                />
+                <Test/>
             </div>
         )
     }
