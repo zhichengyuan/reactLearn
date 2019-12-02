@@ -39,22 +39,39 @@ export default class ValidationComp extends Component {
         k:PropTypes.arrayOf(PropTypes.shape({
             name:PropTypes.string.isRequired,
             age:PropTypes.number.isRequired
-        }))
+        })),
+        m:PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
+        score:function(props,propName,componentName) {
+            console.log(props,propName,componentName);
+            const val = props[propName];
+            //必填
+            if(val === undefined || val === null) {
+                return new Error(`invalid prop ${propName} in ${componentName},${propName} is Required`);
+            }
+            //该属性必须是一个数字
+            if(typeof val !== "number") {
+                return new Error(`invalid prop ${propName} in ${componentName},${propName} is not a number`);
+            }
+            if(val < 0 || val > 100) {
+                return new Error(`invalid prop ${propName} in ${componentName},${propName} must is between 0 and 100`);
+            }
+        }
     }
 
     render() {
         const F = this.props.F;
         const bs = this.props.h.map(it => {
-        return <h1 key={it}>{it}</h1>
+            return <h1 key={it}>{it}</h1>
         })
         return (
             <div>
                 {this.props.a}
-               {this.props.d}
+                {this.props.d}
                 {this.props.e}
                 <F/>
                 {this.props.sex}
                 {bs}
+                {/* {this.props.m} */}
             </div>
         )
     }

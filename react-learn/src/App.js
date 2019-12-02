@@ -33,6 +33,8 @@ export default class App extends Component {
                         }
                     }}
                     k={[{name:'sdsa',age:12}]}
+                    m={'true'}
+                    score={100}
                 />
             </div>
         )
