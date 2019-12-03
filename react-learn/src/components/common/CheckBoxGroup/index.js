@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import types from '../../../utils/commonTypes'
 import PropTypes from 'prop-types'
 
+class CheckBox extends Component {
+    static propTypes = {
+        name:PropTypes.string.isRequired,
+        chooseDates:types.chooseDatas,
+        onChange:PropTypes.func,
+        info:types.singleData.isRequired
+    }
+}
+
 /**
  * 一组多选框
  */
