@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-// import Test from './components/common/CheckBoxGroup/Test'
-// import Test from './components/common/RadioBoxGroup/Test'
-import Test from './components/common/Select/Test'
-// import Test from './components/Test'
+import Comp from './components/Comp'
 
 
 
@@ -12,7 +9,7 @@ export default class App extends Component {
         
         return (
             <div>
-                <Test />
+                <Comp/>
             </div>
         )
     }
