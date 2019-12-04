@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Comp from './components/Comp'
 
 
 
@@ -9,7 +8,6 @@ export default class App extends Component {
         
         return (
             <div>
-                <Comp/>
             </div>
         )
     }
