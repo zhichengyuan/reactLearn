@@ -9,7 +9,9 @@ export default class Test extends Component {
     render() {
         return (
             <div className="container">
-                <Banner imgSrcs={[src1,src2,src3]}/>
+                <Banner imgSrcs={[src1,src2,src3]}
+                    duration={500}
+                />
             </div>
         )
     }
