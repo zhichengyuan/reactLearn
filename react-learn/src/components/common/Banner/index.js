@@ -3,6 +3,7 @@ import './index.css'
 import PropTypes from 'prop-types'
 import ImgContainer from './ImgContainer'
 import SwitchArrow from './SwitchArrow'
+import SwitchDot from './SwitchDot'
 
 export default class Banner extends Component {
 
@@ -22,17 +23,63 @@ export default class Banner extends Component {
         duration:PropTypes.number.isRequired,//完成一次切换需要的时间
     }
 
+    timer = null; //自动切换的计时器
+
+    autoSwitch() {
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+            var cur = this.state.curIndex;
+            cur = (cur + 1) % this.props.imgSrcs.length;
+            this.handleSwitch(cur);
+        },this.props.autoDuration)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timer);
+    }
+
+    componentDidMount() {
+        this.autoSwitch();
+    }
+
+    state = {
+        curIndex:0 //当前是第几章图片
+    }
+
     imgContainerRef = el => {
         this.imgContainer = el;
     }
+
+    handleArrowChange = type => {
+        console.log(type);
+        var cur = this.state.curIndex;
+        if(type === 'left') {
+            cur--;
+            if(cur<0) {
+                cur = this.props.imgSrcs.length -1;
+            }
+        }else{
+            cur++;
+            if(cur > this.props.imgSrcs.length -1) {
+                cur = 0;
+            }
+        }
+       
+        this.handleSwitch(cur);
+    }
+
+  
 
     /**
      * 切换到
      */
 
     handleSwitch = index => {
+        this.setState({
+            curIndex:index
+        })
         //得到ImgContainer的组件对象
-        console.log(this.imgContainer);
+        // console.log(this.imgContainer);
         this.imgContainer.switchTo(index);
     }
 
@@ -43,6 +90,12 @@ export default class Banner extends Component {
                     width:this.props.width,
                     height:this.props.height
                 }}
+                onMouseEnter={() => {
+                    clearInterval(this.timer);
+                }}
+                onMouseLeave={() => {
+                    this.autoSwitch();
+                }}
             >
                 <ImgContainer 
                     ref={this.imgContainerRef}
@@ -51,7 +104,13 @@ export default class Banner extends Component {
                     imgHeight={this.props.height}
                     duration={this.props.duration}
                 />
-                <SwitchArrow />
+                <SwitchArrow onChange={this.handleArrowChange}/>
+                <SwitchDot 
+                    total={this.props.imgSrcs.length}
+                    curIndex={this.state.curIndex}
+                    onChange={this.handleSwitch}
+                />
+
             </div>
         )
     }

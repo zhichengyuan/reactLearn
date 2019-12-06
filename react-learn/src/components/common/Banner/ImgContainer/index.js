@@ -31,7 +31,6 @@ export default class ImgContainer extends Component {
         }else if(index > this.props.imgSrcs.length - 1) {
             index = this.props.imgSrcs.length - 1;
         }
-        console.log(this.div,index);
         //1.根据index,计算div的最终的marginLeft
         const targetLeft = -index * this.props.imgWidth;
         //2.得到当前的marginLeft
