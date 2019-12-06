@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 
-class A extends React.Component {
-    render() {
-        return <h1 ref={this.props.abc}>
+function A(props,ref) {
+    console.log(props,ref);
+    return <h1 ref={ref}>
         组件A
-        <span>{this.props.words}</span>
+        <span>{props.words}</span>
     </h1>
-    }
 }
 
-const NewA = React.forwardRef((props,ref) => {
-    return <A {...props} abc={ref}/>
-})
+//传递函数组件A，得到一个新的组件NewA
+const NewA = React.forwardRef(A);
 
 export default class App extends Component {
     
