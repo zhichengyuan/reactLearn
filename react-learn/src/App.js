@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import OldContext from './OldContext'
+import Test from './components/common/Form/Test'
 
 
 export default class App extends Component {
@@ -9,7 +9,7 @@ export default class App extends Component {
         
         return (
             <div>
-                <OldContext />
+                <Test />
             </div>
         )
     }
