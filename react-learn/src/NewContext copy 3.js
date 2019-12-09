@@ -5,22 +5,27 @@ const ctx2 = React.createContext();
 
 function ChildA(props) {
     return (
+        <ctx2.Provider value={{
+            a:121212,
+            c:'hello'
+        }}>
             <div>
                 <h1>ChildA</h1>
+                <h2>
+                    <ctx1.Consumer>
+                        {value => <>{value.a},{value.b}</>}
+                    </ctx1.Consumer>
+                </h2>
                 <ChildB />
             </div>
-    )
+    </ctx2.Provider>)
 }
 
 class ChildB extends React.Component {
 
-    shouldComponentUpdate(nextProps,nextState) {
-        console.log('运行了优化')
-        return false;
-    }
+   
 
     render() {
-        console.log('render')
         return (
             <ctx1.Consumer>
                 { value => (
@@ -30,7 +35,11 @@ class ChildB extends React.Component {
                                 value.changA(value.a + 2);
                             }}>子组件按钮，a+2</button>
                         </p> 
-                      
+                        <ctx2.Consumer>
+                            {val => (
+                                <p>来自于ctx2的数据:a:{val.a},c:{val.c}</p>
+                            )}
+                        </ctx2.Consumer>
                     </div>
                 )}
             </ctx1.Consumer>

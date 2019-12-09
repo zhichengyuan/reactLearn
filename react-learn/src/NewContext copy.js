@@ -1,39 +1,36 @@
 import React, { Component } from 'react'
 
-const ctx1 = React.createContext();
-const ctx2 = React.createContext();
+const ctx = React.createContext();
 
 function ChildA(props) {
-    return (
-            <div>
-                <h1>ChildA</h1>
-                <ChildB />
-            </div>
-    )
+    return <div>
+        <h1>ChildA</h1>
+        <h2>
+            <ctx.Consumer>
+                {value => <>{value.a},{value.b}</>}
+            </ctx.Consumer>
+        </h2>
+        <ChildB />
+    </div>
 }
 
 class ChildB extends React.Component {
 
-    shouldComponentUpdate(nextProps,nextState) {
-        console.log('运行了优化')
-        return false;
-    }
+    static contextType = ctx;
 
     render() {
-        console.log('render')
         return (
-            <ctx1.Consumer>
+            <ctx.Consumer>
                 { value => (
                     <div>
-                       <p>ChildB,来自于上下文的数据，a:{value.a},b:{value.b}
-                            <button onClick={() => {
-                                value.changA(value.a + 2);
-                            }}>子组件按钮，a+2</button>
-                        </p> 
-                      
+                        ChildB,来自于上下文的数据，a:{value.a},b:{value.b}
+                        <button onClick={() => {
+                            value.changA(value.a + 2);
+                        }}>子组件按钮，a+2</button>
                     </div>
                 )}
-            </ctx1.Consumer>
+            </ctx.Consumer>
+            
         )
     }
 }
@@ -50,7 +47,7 @@ export default class NewContext extends Component {
     }
     render() {
         return (
-            <ctx1.Provider value={this.state}>
+            <ctx.Provider value={this.state}>
                 <div>
                     <ChildA />
                     <button onClick={() => {
@@ -60,7 +57,7 @@ export default class NewContext extends Component {
                     }}>父组件的按钮，a+1</button>
                 </div>
 
-            </ctx1.Provider>
+            </ctx.Provider>
         )
     }
 }
