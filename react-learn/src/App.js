@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NewContext from './NewContext'
+import TaskContainer from "./components/TaskContainer"
 
 
 export default class App extends Component {
@@ -9,7 +9,7 @@ export default class App extends Component {
         
         return (
             <div>
-                <NewContext />
+               <TaskContainer />
             </div>
         )
     }
