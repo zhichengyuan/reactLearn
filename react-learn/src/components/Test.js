@@ -1,36 +1,34 @@
-import React, { Component } from 'react'
-import Modal from './common/Modal'
 
-export default class Test extends Component {
-    state = {
-        showModal:false
-    }
+import withMouseListener from './withMouseListener'
+import React from 'react'
 
-    showModal = () =>{
-        this.setState({
-            showModal:true
-        })
-    }
+function Point(props) {
+    return <>横坐标：{props.x},纵坐标：{props.y}</>
+}
 
-    hideModal = () => {
-        this.setState({
-            showModal:false
-        })
-    }
+function MoveDiv(props) {
+    return (<div style={{
+        width:100,
+        height:100,
+        background:'#008c8c',
+        position:'absolute',
+        left:props.x -50,
+        top:props.y - 50
+    }}></div>)
+}
 
-    render() {
-        return (
-            <div>
-                {
-                    this.state.showModal ?
-                        (<Modal onClose={this.hideModal}>
-                            <h2>发的发生的法定</h2>
-                            <button onClick={this.hideModal}>关闭蒙层</button>
-                        </Modal>) : 
-                        null
-                }
-                <button onClick={this.showModal}>显示蒙层</button>
-            </div>
-        )
-    }
+const MousePoint = withMouseListener(Point);
+const MouseDiv = withMouseListener(MoveDiv);
+
+
+
+
+export default function Test() {
+    return (
+        <div>
+            <MousePoint/>
+            <MouseDiv/>
+            
+        </div>
+    )
 }

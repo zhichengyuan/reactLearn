@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import TaskContainer from "./components/TaskContainer"
+import Test from "./components/Test"
 
 
 export default class App extends Component {
@@ -9,7 +9,7 @@ export default class App extends Component {
         
         return (
             <div>
-             sdsd
+             <Test/>
             </div>
         )
     }
