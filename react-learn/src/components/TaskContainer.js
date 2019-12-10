@@ -21,14 +21,17 @@ export default class TaskContainer extends Component {
         })
     }
 
+    handleAdd = newTask => {
+        this.setState({
+            tasks:[...this.state.tasks,newTask]
+        })
+    }
+
     render() {
+        
         return (
             <div>
-                <AddTask onAdd={newTask => {
-                    this.state({
-                        tasks:[...this.state.tasks,newTask]
-                    })
-                }}/>
+                <AddTask onAdd={this.handleAdd}/>
                 <TaskList tasks={this.state.tasks}/>
             </div>
         )

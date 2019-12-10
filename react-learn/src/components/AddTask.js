@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-export default class AddTask extends Component {
+export default class AddTask extends PureComponent {
 
     state = {
         name:''
     }
+
+   
 
     render() {
         console.log('AddTask Render');
