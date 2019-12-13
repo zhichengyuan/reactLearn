@@ -7,10 +7,6 @@ ReactDOM.render((
     <App />
 ), document.getElementById('root'));
 
-document.addEventListener('click',function(e) {
-    e.stopImmediatePropagation();//阻止剩余的事件处理程序运行
-})
+const app = <div><h1>标题</h1></div>
 
-document.addEventListener('click',function(e) {
-    console.log('真实的dom事件：id为root的div被点击了');
-})
+console.log(app);
