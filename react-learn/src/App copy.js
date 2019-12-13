@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import ErrotBound from './components/common/ErrorBound'
-
+import ReactDOM from 'react-dom'
 
 function Comp1() {
     
@@ -47,13 +46,13 @@ function Comp3() {
 }
 
 export default class App extends Component {
+    
+
     render() {
+        
         return (
             <div className='app'>
-                <ErrotBound>
-                    <Comp1/>
-                </ErrotBound>
-               
+               <Comp1/>
                <Comp3/>
             </div>
         )
