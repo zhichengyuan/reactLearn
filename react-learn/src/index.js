@@ -6,3 +6,11 @@ import App from './App'
 ReactDOM.render((
     <App />
 ), document.getElementById('root'));
+
+document.addEventListener('click',function(e) {
+    e.stopImmediatePropagation();//阻止剩余的事件处理程序运行
+})
+
+document.addEventListener('click',function(e) {
+    console.log('真实的dom事件：id为root的div被点击了');
+})
