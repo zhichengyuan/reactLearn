@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-export default class App extends Component {
-    render() {
-        return (
-            <div>
-               手动阀
-            </div>
-        )
-    }
+
+function Comp1(props) {
+    return <h1>Comp1</h1>
 }
 
+export default function App() {
+    return (
+        <div>
+            <Comp1 />
+        </div>
+    )
+}
 
