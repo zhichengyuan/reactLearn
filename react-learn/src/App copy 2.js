@@ -19,13 +19,6 @@ class CompA extends PureComponent {
     }
 
     render() {
-        if(this.state.a === 123) {
-            return <>
-                <button onClick={this.handleClick}>按钮</button>
-                <CompC n={this.state.b}/>
-            </> 
-            
-        }
         return (
             <div>
                <h1>CompA</h1>
