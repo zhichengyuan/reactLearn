@@ -11,10 +11,7 @@ export default class App extends PureComponent {
         },3000);
     }
 
-    componentWillMount() {
-        console.log('sdsadfasa')
-    }
-
+   
     render() {
         return (
             <div ref={'dsda'}>
