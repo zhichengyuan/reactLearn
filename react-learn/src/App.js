@@ -1,22 +1,24 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 
 
+export default function App() {
 
-export default class App extends PureComponent {
-    constructor(props) {
-        super(props)
-        setTimeout(() => {
-            console.log('hello')
-        },3000);
-    }
+    const [n,setN] = useState(0);//使用一个状态，该状态的默认值是0
+    const [visible,setVisible] = useState(true);
 
-   
-    render() {
-        return (
-            <div ref={'dsda'}>
-               sdsd 
-            </div>
-        )
-    }
+    return <div>
+        <p style={{display:visible? 'block' : 'none'}}>
+            <button onClick={() => {
+                console.log(21212)
+                setN(n - 1)
+            }}>-</button>
+            <span>{n}</span>
+            <button onClick={() => {
+                setN(n + 1)
+            }}>+</button>
+        </p>
+        <button onClick={() => {
+            setVisible(!visible);
+        }}>显示/隐藏</button>
+    </div>
 }
