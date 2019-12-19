@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 
 
 export default function App() {
 
-    // const arr = useState(0);//使用一个状态，该状态的默认值是0
-    // const n = arr[0];//得到状态的值
-    // const setN = arr[1];//得到一个函数，该函数用于改变状态
+    console.log('app,render');
 
     const [n,setN] = useState(0);//使用一个状态，该状态的默认值是0
+    //一下代码属于副作用
+    // document.title = `计数器：${n}`
 
+    useEffect(() => {
+        console.log('改变页面标题的副作用操作')
+        document.title = `计数器：${n}`
+    })
+    useEffect(() => {
+        console.log('其他的副作用操作')
+    })
     return <div>
-        <button onClick={() => {
-            console.log(21212)
-            setN(n - 1)
-        }}>-</button>
         <span>{n}</span>
         <button onClick={() => {
-            setN(n + 1)
+            setN(n +1);
         }}>+</button>
     </div>
 }
