@@ -16,6 +16,7 @@ export default function StudentContainer() {
    
     //当页吗和页容量发生变化时，将重新获取数据
     useEffect(() => {
+        console.log('sdf');
         (async function () {
             const resp = await getStudents(page,limit);
             console.log(resp);
