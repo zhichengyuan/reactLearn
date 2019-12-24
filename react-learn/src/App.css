@@ -1,0 +1,18 @@
+div{
+    transition: 2000ms;
+}
+.exited{
+    opacity: 0;
+}
+
+.entered{
+    opacity: 1;
+}
+
+.entering{
+    opacity: 1;
+}
+
+.exiting{
+    opacity: 0;
+}
