@@ -1,53 +1,44 @@
 import React, { useState } from 'react'
 
-import { Transition } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import './App.css'
+import 'animate.css'
 
-const duration = 2000;
+function MyTransition({ visible,children }) {
+    return <CSSTransition appear mountOnEnter in={visible} timeout={800}
+        classNames={{
+            exitActive:"fadeOutLeft",
+            exitDone:'exit-done',
+            enterActive:'fadeInRight',
+            appearActive:'fadeInRight'
+        }}
+    >
+        {children}
+    </CSSTransition>
+}
 
-// const defaultStyle = {
-//   transition: `opacity ${duration}ms ease-in-out`,
-//   opacity: 0,
-// }
+function Comp1() {
+    return <h1 className="title animated fast">组件1</h1>
+}
 
-// const transitionStyles = {
-//   entering: { opacity: 1 },
-//   entered:  { opacity: 1 },
-//   exiting:  { opacity: 0 },
-//   exited:  { opacity: 0 },
-// };
-
+function Comp2() {
+    return <h1 className="title animated fast">组件2</h1>
+}
 
 export default function App() {
-    const [inProp, setInProp] = useState(false);
+    const [showComp1, setShowComp1] = useState(true);
     return (
-      <div>
-        <Transition in={inProp} timeout={duration}
-           addEndListener={(node,done) => {
-               node.addEventListener('transitionend',() => {
-                   console.log('过渡结束了')
-               },{once:true})
-           }}
-        >
-        {state => {
-            console.log(state);
-            return <div className={state}>
-                I'm a fade Transition!
-            </div>
-        }}
-
-        {/* {state => (
-            <div style={{
-                ...defaultStyle,
-                ...transitionStyles[state]
-            }}>
-                I'm a fade Transition!
-            </div>
-        )} */}
-        </Transition>
-        <button onClick={() => setInProp(!inProp)}>
-          Click to Toggle
-        </button>
+      <div className="container">
+          <div className="comp-container">
+            <MyTransition visible={showComp1}>
+                <Comp1/>
+            </MyTransition>
+            <MyTransition visible={!showComp1}>
+                <Comp2/>
+            </MyTransition>
+          </div>
+         
+         <button onClick={() => setShowComp1(!showComp1)}>切换显示状态</button>
       </div>
     );
   }
