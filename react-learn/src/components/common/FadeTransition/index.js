@@ -6,20 +6,29 @@ FadeTransition.defaultProps = {
     timeout:1000
 }
 
-function addTransition(node,timeout) {
-    node.style.transition = `opacity ${timeout}ms`
-}
 
-function removeTransition(node) {
-    node.style.transition = '';
-}
 export default function FadeTransition(props) {
+    function addTransition(node) {
+        node.style.transition = `opacity ${props.timeout}ms`
+    }
+    
+    function removeTransition(node) {
+        node.style.transition = '';
+    }
     return (
-        <CSSTransition {...props} appear classNames="fade"
-            onEnter={node => addTransition(node,props.timeout)}
-            onEntered={node => removeTransition(node,props.timeout)}
-            onExit={node => addTransition(node,props.timeout)}
-            onExited={node => removeTransition(node,props.timeout)}
+        <CSSTransition {...props} classNames="fade"
+            onEnter={addTransition}
+            onEntered={(node,isApper) => {
+                removeTransition(node);
+                props.onEntered && props.onEntered(node,isApper)
+            }}
+            onExit={addTransition}
+            onExited={node => {
+                removeTransition(node);
+                if(props.onExited) {
+                    props.onExited(node);
+                }
+            }}
         ></CSSTransition>
     )
 }

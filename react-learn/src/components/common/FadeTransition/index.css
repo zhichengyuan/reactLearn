@@ -1,8 +1,8 @@
 
-.fade-enter,.fade-exit-done,.fade-exit-active, .appear{
+.fade-enter,.fade-exit-done,.fade-exit-active, .fade-appear{
     opacity: 0;
 }
 
-.fade-enter-active,.appear-active{
+.fade-enter-active,.fade-appear-active{
     opacity: 1;
 }
