@@ -15,7 +15,7 @@ function removeTransition(node) {
 }
 export default function FadeTransition(props) {
     return (
-        <CSSTransition {...props} classNames="fade"
+        <CSSTransition {...props} appear classNames="fade"
             onEnter={node => addTransition(node,props.timeout)}
             onEntered={node => removeTransition(node,props.timeout)}
             onExit={node => addTransition(node,props.timeout)}
