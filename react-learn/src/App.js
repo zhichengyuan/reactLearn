@@ -1,39 +1,22 @@
-import React, { useState } from 'react'
-import uuid from 'uuid'
+import React,{ Component } from 'react'
 
-import { CSSTransition,SwitchTransition,TransitionGroup } from 'react-transition-group';
-import './App.css'
-import 'animate.css'
+import FadeTransition from './components/common/FadeTransition'
 
-export default function App() {
-    const [tasksList, setTasksList] = useState([
-        { id: uuid(),name:'任务1'},
-        { id:uuid(),name:'任务2' },
-    ]);
-    console.log(uuid())
-    return (
-      <div>
-            <TransitionGroup appear component='ul' className="dsd">
-                {
-                    tasksList.map(t => (
-                        <CSSTransition key={t.id} timeout={500}>
-                            <li>{t.name}<button
-                                onClick={() => {
-                                    var newTasks = tasksList.filter(it => it.id !== t.id)
-                                    setTasksList(newTasks);
-                                }}
-                            >删除</button></li>
-                        </CSSTransition>
-                    ))
-                }
-                
-            </TransitionGroup>
+export default class App extends Component {
+    state = {
+        show:true
+    }
+
+    render() {
+        return <div>
+            <FadeTransition in={this.state.show}>
+                <h1>标题</h1>
+            </FadeTransition>
             <button onClick={() => {
-                var name = window.prompt("请输入任务名称");
-                setTasksList([...tasksList,{id:uuid(),name}])
-            }}>
-                添加任务
-            </button>
-      </div>
-    );
-  }
+                this.setState({
+                    show:!this.state.show
+                })
+            }}>切换显示状态</button>
+        </div>
+    }
+}
