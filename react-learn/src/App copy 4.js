@@ -25,15 +25,8 @@ export default function App() {
     return(
         <Router>
             <Switch>
-                
+                <Route path="/a" exact component={A}/>
                 <Route path="/a/b" component={B}/>
-                <Route path="/a" exact component={A}>
-                    {() => {
-                        return <div>
-                            <h1 style={{color:'red'}}>必定渲染</h1>
-                        </div>
-                    }}
-                </Route>
                 <Route component={C}/>
             </Switch>
         </Router>
