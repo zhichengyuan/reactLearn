@@ -20,10 +20,9 @@ export default function App() {
     return(
       <Router>
           <Switch>
-              <Route path="/news/:year(\d+)/:month(\d+)/:day(\d+)/*" exact component={News}/>
+              <Route path="/news/:year?/:month?/:day?" component={News}/>
               <Route component={NotFound}/>
           </Switch>
       </Router>
     )
 }
-
