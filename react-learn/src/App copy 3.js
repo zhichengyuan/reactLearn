@@ -2,8 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
 import qs from 'query-string'
 
-function News(props) {
-    console.log(props.match)
+function A(props) {
+    console.log(props.location)
+    console.log(qs.parse(props.location.search));
+    console.log(qs.parse(props.location.hash));
     return <div>
         
         <p>组件A</p>
@@ -20,7 +22,7 @@ export default function App() {
     return(
       <Router>
           <Switch>
-              <Route path="/news/:year/:month/:day" component={News}/>
+              <Route path="/a" exact component={A}/>
               <Route component={NotFound}/>
           </Switch>
       </Router>
