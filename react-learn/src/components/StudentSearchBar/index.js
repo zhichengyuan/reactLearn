@@ -19,6 +19,13 @@ export default class StudentSearchBar extends Component {
         })
     }
 
+    handleSearch = () => {
+        //抛出事件
+        if(this.props.onSearch) {
+            this.props.onSearch(this.state);
+        }
+    }
+
     render() {
         return (
             <div>
@@ -30,7 +37,7 @@ export default class StudentSearchBar extends Component {
                 <label><input checked={this.state.sex === -1} type="radio" name="sex" value={-1} onChange={this.handleRadioChange}/>不限</label>
                 <label><input checked={this.state.sex === 0} type="radio" name="sex" value={0} onChange={this.handleRadioChange}/>男</label>
                 <label><input checked={this.state.sex === 1} type="radio" name="sex" value={1} onChange={this.handleRadioChange}/>女</label>
-                <button>查询</button>
+                <button onClick={this.handleSearch}>查询</button>
             </div>
         )
     }
