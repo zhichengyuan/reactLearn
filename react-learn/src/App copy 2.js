@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route,NavLink,Switch,Redirect} from 'react-router-dom'
+import { BrowserRouter as Router, Route,NavLink} from 'react-router-dom'
 // import Link from './Link'
 import './App.css'
 
@@ -14,7 +14,8 @@ function PageB() {
 function NavBar() {
     return <div>
         <NavLink activeClassName="selected"
-            
+            exact
+            strict
             activeStyle={{
                 background:'#ccc'
             }}
@@ -28,15 +29,6 @@ function NavBar() {
             hash:"#fsd",
             search:'?a=dadf&b=dsfsa'
         }} style={{marginRight:20}}>去b页</NavLink>
-
-        <NavLink
-            to="/abc"
-            style={{
-                marginLeft:20
-            }}
-        >
-            其他页面
-        </NavLink>
     </div>
 }
 
@@ -45,14 +37,8 @@ export default function App() {
       <div>
           <Router>
               <NavBar/>
-              <Switch>
-                <Route path="/a" component={PageA} />
-                <Route path="/b" component={PageB} />
-                <Redirect 
-                from="/abc/:id"
-                to="/a/:id"/>
-              </Switch>
-              
+              <Route path="/a" component={PageA} />
+              <Route path="/b" component={PageB} />
           </Router>
       </div>
     )
