@@ -5,13 +5,14 @@ import NewsDetail from './NewsDetail'
 import NewsSearch from './NewsSearch'
 
 export default [
-    {path:"/", exact:true,component: Home},
+    
     {
-        path:"news",exact:true,component:News,
+        path:"/news",component:News,name:"news",
         children:[
-            {path:'/', exact:true ,component:NewsHome},
-            {path:'/detail',exact:true,component:NewsDetail},
-            {path:'/search',exact:true,component:NewsSearch},
+            {path:'/', exact:true ,component:NewsHome,name:"newsHome"},
+            {path:'/detail',exact:true,component:NewsDetail,name:"newsDetail"},
+            {path:'/search',exact:true,component:NewsSearch,name:"newsSearch"},
         ]
-    }
+    },
+    {path:"/", exact:true,component: Home,name:"home"},
 ]
