@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import { Route,Link} from 'react-router-dom'
 import RouteGuard from './RouteGuard'
 
 function Page1() {
@@ -8,15 +8,20 @@ function Page1() {
 function Page2() {
   return <h1>page2</h1>
 }
-let count = 0;
+
 export default function App() {
     return(
-     <Router
-      getUserConfirmation={(msg,callback) => {
-        console.log('页面想要跳转？没门,消息：' + msg)
-        callback(true);
-      }}
-     >
+      <RouteGuard
+        onBeforeChange={(prev,cur,action,commit,unBlock) => {
+          console.log(`页面想要从${prev.pathname}跳转到${cur.pathname},跳转方式是${action},允许跳转`);
+          commit(true);
+          unBlock();//取消阻塞 ，只阻塞一次
+        }}
+        onChange={(precLocation,location,action,unListen) => {
+          console.log(`日志：从${precLocation.pathname}进入页面${location.pathname},进入方式${action}`)
+          unListen();//取消监听 ，只监听一次
+        }}
+      >
        <ul>
          <li>
            <Link replace to="/page1">页面1</Link>
@@ -25,17 +30,9 @@ export default function App() {
            <Link to="/page2">页面2</Link>
          </li>
        </ul>
-       <RouteGuard onChange={(precLocation,location,action,unListen) => {
-         count ++;
-         console.log(`日志${count}：从${precLocation.pathname}进入页面${location.pathname},进入方式${action}`)
-         if(count === 5) {
-           unListen();
-         }
-       }}>
           <Route path="/page1" component={Page1}/>
           <Route path="/page2" component={Page2}/>
-       </RouteGuard>
-     </Router>
+      </RouteGuard>
     )
 }
 
