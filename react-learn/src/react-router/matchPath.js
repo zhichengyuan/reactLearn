@@ -5,11 +5,11 @@ import { pathToRegexp} from "path-to-regexp"
  * 如果不匹配，返回undefined
  * 如果可以匹配，匹配结果，匹配结果是一个对象，该对象中的属性名对应规则中的关键字
  * @param {*} path 路径规则
+ * @param {*} pathname 真实的地址
  * @param {*} options 相关配置,该配置是一个对象，对象中可以出现：exact、sensitive、strict
  */
 
-export default function matchPath(path,options) {
-    const pathname = window.location.pathname;
+export default function matchPath(path,pathname,options) {
     const keys = []; //保存路径规则中的关键字
     const regExp = pathToRegexp(path,keys,getOptions(options));
     const result = regExp.exec(pathname);//匹配的url地址
