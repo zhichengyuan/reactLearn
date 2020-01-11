@@ -195,6 +195,14 @@ function createLoction (basename = "") {
 }
 
 /**
+ * 根据pathInfo得到一个location对象
+ * @param {*} pathInfo 
+ * @param {*} basename 
+ */
+function createLoctionFromPath(pathInfo,basename) {
+
+}
+/**
  * 产生一个指定长度的随机字符串，随机字符串中可以包含数字和字母
  * @param {*} keyLength 
  */
