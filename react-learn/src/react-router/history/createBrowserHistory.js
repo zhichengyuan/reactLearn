@@ -57,19 +57,20 @@ export default function createBrowserHistory (options = {}) {
             action = "REPLACE"
         }
         const pathInfo = handlePathAndState(path,state,basename);
-        if(isPush) {
-            window.history.pushState({
-                key:createKey(keyLength),
-                state:pathInfo.state
-            },null,pathInfo.path);
-        }else{
-            window.history.replaceState({
-                key:createKey(keyLength),
-                state:pathInfo.state
-            },null,pathInfo.path);
-        }
-        const location = createLoction(basename);
+        
+        const location = createLoctionFromPath(pathInfo);
         blockManager.triggerBlock(location,action,() => {
+            if(isPush) {
+                window.history.pushState({
+                    key:createKey(keyLength),
+                    state:pathInfo.state
+                },null,pathInfo.path);
+            }else{
+                window.history.replaceState({
+                    key:createKey(keyLength),
+                    state:pathInfo.state
+                },null,pathInfo.path);
+            }
             listenerManager.triggerListener(location,action);
             //改变action
             history.action = action;
@@ -196,7 +197,7 @@ function createLoction (basename = "") {
 
 /**
  * 根据pathInfo得到一个location对象
- * @param {*} pathInfo 
+ * @param {*} pathInfo {path:'/news/sd??a=2&b=3#aaaa',state:''}
  * @param {*} basename 
  */
 function createLoctionFromPath(pathInfo,basename) {
