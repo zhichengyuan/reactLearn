@@ -5,7 +5,7 @@ import App from './App'
 // import './react-router/browserHistory'
 // import './react-router/hashHistory'
 // import './react-router/memoryHistory'
-import './react-router/history'
+import './rect-router-dom/history'
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 

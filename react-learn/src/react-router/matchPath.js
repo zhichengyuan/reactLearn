@@ -20,8 +20,7 @@ export default function matchPath(path,pathname,options) {
     let groups = Array.from(result);
     groups = groups.slice(1);
     let params = getParams(groups,keys);
-    console.log(result[0]);
-    console.log(params);
+   
     
     return {
         isExact:pathname === result[0],

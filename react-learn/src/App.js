@@ -1,8 +1,13 @@
 import React from 'react'
+import { BrowserRouter } from './rect-router-dom'
 
 export default function App() {
     return(
-      <div></div>
+      <BrowserRouter
+        basename="/news"
+      >
+        sfas
+      </BrowserRouter>
     )
 }
 
