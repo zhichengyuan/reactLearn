@@ -127,8 +127,12 @@ export default function createBrowserHistory (options = {}) {
         //无法监听到pushState、replaceState
         window.addEventListener("popstate",function () {
             const location = createLoction(basename);
-            listenerManager.triggerListener(location,"POP");
-            history.location = location;
+            const action = "POP"
+            blockManager.triggerBlock(location,action,() => {
+                listenerManager.triggerListener(location,"POP");
+                history.location = location;
+            })
+            
         })
     }
 
@@ -144,8 +148,14 @@ export default function createBrowserHistory (options = {}) {
     function block(prompt) {
         return blockManager.block(prompt);
     }
+
+    function createHref(location) {
+        return basename + location.pathname + location.search + location.hash;
+    }
+
     const history = {
         action:"POP",
+        createHref,
         block,
         go,
         goBack,
@@ -201,8 +211,39 @@ function createLoction (basename = "") {
  * @param {*} basename 
  */
 function createLoctionFromPath(pathInfo,basename) {
+    
+    //取出pathname
+    let pathname = pathInfo.path.replace(/[#?].*$/,"");
+    console.log(pathname);
+     //处理basename的情况
+     const reg = new RegExp(`^${basename}`);
+     pathname = pathname.replace(reg,"");
+     //search
+     var questionIndex = pathInfo.path.indexOf('?');
+     var sharpIndex = pathInfo.path.indexOf('#');
+     let search;
+     if(questionIndex === -1 || questionIndex > sharpIndex) {
+         search = '';
+     }else {
+         search = pathInfo.path.substring(questionIndex,sharpIndex);
+     }
+     //hash
+     let hash;
+     if(sharpIndex === -1) {
+         hash = '';
+     }else {
+         hash = pathInfo.path.substr(sharpIndex);
+     }
+
+     return {
+         hash,
+         pathname,
+         search,
+         state:pathInfo.state
+     }
 
 }
+
 /**
  * 产生一个指定长度的随机字符串，随机字符串中可以包含数字和字母
  * @param {*} keyLength 
@@ -211,7 +252,4 @@ function createKey(keyLength) {
     return Math.random().toString(36).substr(2,keyLength);
 }
 
-window.myHistory = createBrowserHistory ({
-    // basename:'/news',
-    forceRefresh:false
-});
+
