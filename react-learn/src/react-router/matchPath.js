@@ -1,34 +1,28 @@
-import { pathToRegexp} from "path-to-regexp"
+import {pathToRegexp} from "path-to-regexp";
 
 /**
- * 得到匹配结果
- * 如果不匹配，返回undefined
- * 如果可以匹配，匹配结果，匹配结果是一个对象，该对象中的属性名对应规则中的关键字
+ * 得到匹配结果（match对象），如果没有匹配，返回null
  * @param {*} path 路径规则
  * @param {*} pathname 真实的地址
- * @param {*} options 相关配置,该配置是一个对象，对象中可以出现：exact、sensitive、strict
+ * @param {*} options 相关配置，该配置是一个对象，该对象中，可以出现：exact、sensitive、strict
  */
-
-export default function matchPath(path,pathname,options) {
-    const keys = []; //保存路径规则中的关键字
-    const regExp = pathToRegexp(path,keys,getOptions(options));
-    const result = regExp.exec(pathname);//匹配的url地址
-    if(!result) {
-        return null;//没有匹配
+export default function matchPath(path, pathname, options) {
+    const keys = [];//保存路径规则中的关键字
+    const regExp = pathToRegexp(path, keys, getOptions(options));
+    const result = regExp.exec(pathname); //匹配url地址
+    if (!result) {
+        return null; //没有匹配
     }
     //匹配了
     let groups = Array.from(result);
-    groups = groups.slice(1);
-    let params = getParams(groups,keys);
-   
-    
+    groups = groups.slice(1); //得到匹配的分组结果
+    const params = getParams(groups, keys);
     return {
-        isExact:pathname === result[0],
+        isExact: pathname === result[0],
         params,
         path,
-        url:result[0]
+        url: result[0]
     };
-
 }
 
 /**
@@ -37,15 +31,15 @@ export default function matchPath(path,pathname,options) {
  */
 function getOptions(options = {}) {
     const defaultOptions = {
-        exact:false,
-        secsitive:false,
-        strict:false
+        exact: false,
+        sensitive: false,
+        strict: false
     }
-    const opts = {...defaultOptions,...options}
+    const opts = { ...defaultOptions, ...options };
     return {
-        sensitive:opts.sensitive,
-        strict:opts.strict,
-        end:opts.exact
+        sensitive: opts.sensitive,
+        strict: opts.strict,
+        end: opts.exact
     }
 }
 
@@ -54,16 +48,12 @@ function getOptions(options = {}) {
  * @param {*} groups 
  * @param {*} keys 
  */
-
-function getParams(groups,keys) {
-    const obj = {}
-    for(let i = 0;i < groups.length ;i++) {
+function getParams(groups, keys) {
+    const obj = {};
+    for (let i = 0; i < groups.length; i++) {
         const value = groups[i];
         const name = keys[i].name;
         obj[name] = value;
     }
     return obj;
 }
-
-const result1 = matchPath('/news/:id','/news/sdsda/sd',);
-console.log(result1);
