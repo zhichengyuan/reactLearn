@@ -1,10 +1,15 @@
 import { createStore} from 'redux'
 import reducer from './reducer'
-import * as numberActions from './action//number-action'
-
+import { createAddUserAction } from './action/userAction'
+import uuid from 'uuid'
 
 const store = createStore(reducer);//创建store仓库
 
 console.log(store.getState());
-store.dispatch(numberActions.getIncreaseAction());
+
+store.dispatch(createAddUserAction({
+    id:uuid(),
+    name:'abc',
+    age:18
+}));
 console.log(store.getState());
