@@ -37,11 +37,10 @@ import { createAddUserAction,createDeleteUserAction } from './action/userAction'
  }
 
 //应用中间件，方式1：
-const store = createStore(reducer,applyMiddleware(logger1,logger2));//创建store仓库
+//const store = createStore(reducer,applyMiddleware(logger1,logger2));//创建store仓库
 
 //方式2：
-// const store = applyMiddleware(logger1,logger2)(createStore)(reducer);
-
+const store = applyMiddleware(logger1,logger2)(createStore)(reducer);
 const actionCreators = {
     addUsers:createAddUserAction,
     deleteUser:createDeleteUserAction
