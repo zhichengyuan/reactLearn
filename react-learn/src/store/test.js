@@ -6,4 +6,4 @@ import { fetchStudents } from './action/student/searchResult'
 //     page:2
 // }))
 
-store.dispatch(fetchStudents())
+store.dispatch(fetchStudents(store.getState().students.searchCondition))
