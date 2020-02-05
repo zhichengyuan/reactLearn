@@ -1,14 +1,14 @@
-import { createStore, applyMiddleware} from '../redux'
+//用于创建仓库，并导出
+import { createStore,applyMiddleware } from 'redux'
 import reducer from './reducer'
 import logger from 'redux-logger'
-import thunk from '../redux-thunk'
+import thunk from 'redux-thunk'
 
-export default createStore(reducer,
-    applyMiddleware(
-        thunk,
-        logger
-    )
-);//创建store仓库
+const store = createStore(reducer,
+    applyMiddleware(thunk,logger)
+);
+
+export default store;
 
 
 
