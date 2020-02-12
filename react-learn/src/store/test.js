@@ -1,9 +1,30 @@
 import store from './index'
-import {change} from './action/student/searchCondition'
+import { increase,decrease,asyncIncrease,asyncDecrease,autoIncrease,stopAutoIncrease } from './action/counter'
 import { fetchStudents } from './action/student/searchResult'
-// store.dispatch(change({
-//     key:'abc',
-//     page:2
-// }))
 
-store.dispatch(fetchStudents(store.getState().students.searchCondition))
+window.autoIncearse = function() {
+    store.dispatch(autoIncrease());
+}
+
+window.stopAutoIncrease = function() {
+    store.dispatch(stopAutoIncrease());
+}
+
+window.fetchStudents = function () {
+    store.dispatch(fetchStudents());
+}
+
+window.increase = function () {
+    store.dispatch(increase());
+}
+window.decrease = function () {
+    store.dispatch(decrease());
+}
+
+window.asyncIncrease = function () {
+    store.dispatch(asyncIncrease());
+}
+
+window.asyncDecrease = function () {
+    store.dispatch(asyncDecrease());
+}
