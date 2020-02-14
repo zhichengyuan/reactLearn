@@ -27,31 +27,25 @@ function mapStateToProps(state,ownProps) {
     }
 }
 
-const creators = {
-    onAsyncDecrease:asyncDecrease,
-    onDecrease:decrease,
-    onIncrease:increase,
-    onAsyncIncrease:asyncIncrease
 
-}
 //用的最多
-// //映射事件处理
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         onAsyncDecrease(){
-//             dispatch(asyncDecrease())
-//         },
-//         onDecrease(){
-//             dispatch(decrease())
-//         },
-//         onIncrease(){
-//             dispatch(increase())
-//         },
-//         onAsyncIncrease(){
-//             dispatch(asyncIncrease())
-//         }
-//     }
-// }
+//映射事件处理
+function mapDispatchToProps(dispatch) {
+    return {
+        onAsyncDecrease(){
+            dispatch(asyncDecrease())
+        },
+        onDecrease(){
+            dispatch(decrease())
+        },
+        onIncrease(){
+            dispatch(increase())
+        },
+        onAsyncIncrease(){
+            dispatch(asyncIncrease())
+        }
+    }
+}
 
 // //connect 返回一个高阶组件
 // const hoc = connect(mapStateToProps,mapDispatchToProps)
@@ -59,4 +53,4 @@ const creators = {
 // //传入展示组件，返回一个容器
 // export default hoc(Counter);
 
-export default connect(mapStateToProps,creators)(Counter)
+export default connect(mapStateToProps,mapDispatchToProps)(Counter)
