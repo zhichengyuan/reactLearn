@@ -10,7 +10,10 @@ export default class StudentSearchBar extends Component {
             key:'',
             sex:-1
         };
-        this.state = Object.assign({},def,this.props.defaultValue);
+        this.state = Object.assign({},def,{
+            key:props.key,
+            sex:props.sex
+        });
     }
 
     handleRadioChange = e => {
