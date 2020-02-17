@@ -1,7 +1,7 @@
 
 import React from 'react'
 import StudentSearchBar from './StudentSearchBar'
-import { connect } from '../react-redux'
+import { connect } from 'react-redux'
 import { change as changeCondition } from '../store/action/student/searchCondition'
 import { fetchStudents } from '../store/action/student/searchResult'
 import StudentTable from './StudentTable'

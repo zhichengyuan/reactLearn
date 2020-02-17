@@ -4,6 +4,7 @@ import reducer from './action'
 import logger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './saga'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const sagaMid = createSagaMiddleware();//创建一个saga的中间件
 
@@ -11,8 +12,9 @@ const sagaMid = createSagaMiddleware();//创建一个saga的中间件
 
 const store = createStore(reducer,
     applyMiddleware(sagaMid,logger)
+    // composeWithDevTools(applyMiddleware(sagaMid,logger))
 );
-console.log(store.getState());
+
 sagaMid.run(rootSaga);//启动saga任务
 
 export default store;
