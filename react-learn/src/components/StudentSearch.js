@@ -73,6 +73,7 @@ export default class StudentSearch extends React.Component {
 
     render() {
         return <>
+            
             <SearchBar/>
             <Table />
             <PagerTemp/>
