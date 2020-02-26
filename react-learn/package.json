@@ -5,6 +5,7 @@
   "dependencies": {
     "animate.css": "^3.7.2",
     "connected-react-router": "^6.7.0",
+    "dva": "^2.4.1",
     "history": "^4.10.1",
     "is-promise": "^2.1.0",
     "loadash": "^1.0.0",

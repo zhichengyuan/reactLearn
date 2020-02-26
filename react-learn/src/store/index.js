@@ -5,7 +5,7 @@ import reducer from './action'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { routerMiddleware } from '../connected-react-router'
+import { routerMiddleware } from 'connected-react-router'
 import history from './history'
 const routerMid = routerMiddleware(history)
 
