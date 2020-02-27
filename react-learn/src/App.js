@@ -1,25 +1,12 @@
 import React from 'react'
-import {Provider} from 'react-redux'
-import store from './store'
-// import StudentSearch from './components/StudentSearch'
-import { Route,Switch } from 'react-router-dom'
-import { ConnectedRouter } from 'connected-react-router'
-import Admin from './pages/Admin'
-import Login from './pages/Login'
-import history from './store/history'
+import Counter from './Counter'
 
 export default function App() {
 
     return (
-        <div></div>
-        // <Provider store={store}>
-        //     <ConnectedRouter history={history}>
-        //         <Switch>
-        //             <Route path="/login" component={Login}></Route>
-        //             <Route path="/" component={Admin}></Route>
-        //         </Switch>
-        //     </ConnectedRouter>
-        // </Provider>
+        <div>
+            <h1>9-7之前的必须卸载dva依赖包才能运行起来,也可以将配置文件中的dva去除，然后下载依赖包</h1>
+            <Counter/>
+        </div>
     )
-    
 }
