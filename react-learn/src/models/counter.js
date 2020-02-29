@@ -25,19 +25,6 @@ export default {
             yield put({type:'decrease'})
             console.log('异步减');
         }
-    },
-    subscriptions:{
-        resizeIncrease({dispatch}) {
-            //订阅窗口尺寸变化，每次变化让数字增家
-            window.onresize = () => {
-                dispatch({type:'increase'})
-            }
-        },
-        resizeDecrease({dispatch,history}){
-            history.listen(() => {
-                dispatch({type:'decrease'})
-            })
-        }
     }
 }
 

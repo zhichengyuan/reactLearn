@@ -1,10 +1,12 @@
 import React,{useRef} from 'react'
 import { connect } from 'dva'
+import Modal from './components/common/Modal'
 
 function Counter(props) {
     const inp = useRef();
     return (
         <div>
+            
             <h2>{props.number}</h2>
             <button onClick={props.onAsyncDecrease}> 异步减 </button>
             <button onClick={props.onDecrease}> - </button>
@@ -17,12 +19,20 @@ function Counter(props) {
                     props.onAdd(n)
                 }}>加上</button>
             </p>
+            {
+                props.isLoading && <Modal onClose={() => {}}>
+                    <div style={{color:'#ccc',fontSize:'2em'}} >
+                        加载中。。。。
+                    </div>
+                </Modal>
+            }
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    number:state.counter
+    number:state.counter,
+    isLoading: state.loading.models.counter
 })
 
 const mapbDispatchToProps = dispatch => ({
