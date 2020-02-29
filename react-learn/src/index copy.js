@@ -1,19 +1,17 @@
 
 import routerConfig from "./routerConfig"
 // import './store/test'
-import  dva from './dva'
+import  dva from 'dva'
 import counterModel from './models/counter'
 import  studentsModel from './models/students'
 import { createBrowserHistory } from 'history'
 
-// const logger = store => next => action => {
-//     console.log('老状态',store.getState());
-//     console.log('action',action);
-//     next(action);
-//     console.log('新状态',store.getState());
-//     console.log(' ');
-    
-// }
+const logger = store => next => action => {
+    console.log('老状态',store.getState());
+    next(action);
+    console.log('新状态',store.getState());
+    console.log('');
+}
 // 得到一个dva对象
 const app = dva({
     history:createBrowserHistory(),
@@ -21,28 +19,33 @@ const app = dva({
         counter:123
     },
     onError(err,dispatch) {
-        console.log(err.message);
-        console.log(dispatch);
+        console.log(err.message,dispatch);
     },
     // onAction:logger
-    onStateChange(state) {
+    onStateChange(state){
         console.log(state.counter);
     },
-    onReducer(reducer) {
-        return function (state,action) {
-            console.log('reducer即将执行');
-            return reducer(state,action);
-        }
-    },
-    onEffect(effect,sagaEffects,model,actionType) {
-        return function* (action) {
-            console.log('副作用即将产生');
-            yield effect(action);
-        }
-    },
+    // onReducer(reducer) {
+    //     return function(state,action) {
+    //         console.log('reducer即将被执行')
+    //         const newState = reducer(state,action);
+    //         console.log('reducer执行结束');
+    //         return newState;
+    //     }
+    // },
+    // onEffect(oldEffect,sagaEffects,model,actionType) {
+    //     return function* (action) {
+    //         console.log('即将执行副作用代码');
+    //         yield oldEffect(action);
+    //         console.log('副作用代码执行完毕');
+    //     } 
+    // },
     extraReducers:{
-        abc(state = 124,action) {
+        abc(state = 123 ,action) {
             return state;
+        },
+        bcd(state = 546,action) {
+            return state
         }
     },
     extraEnhancers:[function (createStore) {
@@ -66,3 +69,5 @@ app.model(studentsModel)
 app.router(routerConfig)
 
 app.start('#root');
+
+// ReactDOM.render(<App />, document.getElementById('root'));

@@ -16,8 +16,8 @@ export default {
         *asyncIncrease(action,{call,put}) {
             yield call(delay,1000);
             // throw new Error('测试错误')
-            yield put({type:'increase'})
-            
+            yield put({type:'counter/increase'})
+            // throw new Error('错误,测试');
             console.log('异步加');
         },
         *asyncDncrease(action,{call,put}) {
@@ -33,11 +33,11 @@ export default {
                 dispatch({type:'increase'})
             }
         },
-        resizeDecrease({dispatch,history}){
-            history.listen(() => {
-                dispatch({type:'decrease'})
-            })
-        }
+        // resizeDecrease({dispatch,history}){
+        //     history.listen(() => {
+        //         dispatch({type:'decrease'})
+        //     })
+        // }
     }
 }
 
