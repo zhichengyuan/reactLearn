@@ -18,11 +18,20 @@ export default function (opts = {}) {
         _models:[],//记录已经定义的模型
         router,
         _router:null,//用于记录路由函数
-        start//启动函数
+        start,//启动函数
+        use
     }
-    const options = getOptions();
+    let options = getOptions();
     return app;
 
+
+    /**
+     * 使用dva插件
+     * @param {*} plugin 
+     */
+    function use(plugin) {
+        options = { ...options, ...plugin }
+    }
 
     /**
      * 得到配置
@@ -36,7 +45,8 @@ export default function (opts = {}) {
             onReducer:opts.onReducer || (reducer => (state,action) => reducer(state,action)),
             onEffect:opts.onEffect,
             extraReducers:opts.extraReducers || {},
-            extraEnhancers:opts.extraEnhancers || []
+            extraEnhancers:opts.extraEnhancers || [],
+           
         }
         
         if(opts.onAction) {
@@ -146,7 +156,7 @@ export default function (opts = {}) {
                     //该函数可以被进一步封装
                     if(options.onEffect) {
                         let oldEffect = func;
-                        func = options.onEffect(oldEffect,sagaEffects,model,item.type);
+                        func = options.onEffect(oldEffect,sagaEffects,item.model,item.type);
                     }
                     yield sagaEffects.takeEvery(item.type,func);
                 }
@@ -187,7 +197,7 @@ export default function (opts = {}) {
 
         //封装了onStateChange的reducer
         rootReducer = function(state,action) {
-            const newState = oldReducer(state,action);
+            const newState = oldReducer(state,action); 
             options.onStateChange(newState);
             return newState;
         }
